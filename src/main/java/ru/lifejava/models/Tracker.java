@@ -11,11 +11,6 @@ public class Tracker {
     this.items = new Item[size];
   }
 
-  public int generateId() {
-    id++;
-    return id;
-  }
-
   public void add(Item item) {
     //this.items[items.length+1] = item;
     for (int i = 0; i < this.items.length; i++) {
@@ -51,16 +46,13 @@ public class Tracker {
     return null;
   }
 
-  public Item[] filter(long a, long b) { //имени
-    int k = 0;
-    Item[] result = new Item[items.length];
-    for(int i = 0; items[i] != null && i < items.length; i++) {
-      if((items[i].getCreate() >= a) && (items[i].getCreate() <= b)) {
-        result[k] = items[i];
-        k++;
-      }
+  public Item[] filter(String str) { //имени
+    char[] arrSearch = str.toCharArray();
+    for (int i = 0; i < arrSearch.length; i++) {
+
     }
-    return result;
+    
+    return items;
   }
 
   public Item[] getAll() {
