@@ -22,7 +22,7 @@ public class Tracker {
   }
 
   public void delete(Item item) {//удаляем по айдишники
-    for (int i = 0; i < items.length; i++) {
+    for (int i = 0; i < this.items.length; i++) {
       if(this.items[i].getId() == item.getId()) {
         this.items[i] = null;
       }
@@ -48,12 +48,31 @@ public class Tracker {
 
   public Item[] filter(String str) { //имени
     char[] arrSearch = str.toCharArray();
-    for (int i = 0; i < arrSearch.length; i++) {
+    Item[] result = new Item[items.length];
 
-    }
-    
-    return items;
-  }
+    for (int i = 0; i < this.items.length && items != null; i++) { //проверяем по порядку каждое имя из массива items[]
+      String s = this.items[i].getName();
+      char[] arr = s.toCharArray();             //попорядку делем на символы имя каждого объекта
+
+      for (int j = 0; j < arr.length; j++) {
+        if(arr[j] == arrSearch[0]) {               // когда символ станет равен первому символу искомой строки
+          for (int a=j, b=0; b < arrSearch.length && a < arr.length; a++, b++) {
+            if(arr[a] == arrSearch[b]) {            //проверяем что бы символы были равны
+              if (b  == (arrSearch.length - 1)) {   //когда b станет равен последнему символу искомой строки
+                for (int d = 0; d < result.length; d++) {
+                  if (result[d] == null) {
+                    result[d] = items[i];
+                    break;
+                  }
+                } // end for
+              } // end if
+            } // end if
+          }// end for
+        }// end if
+      }// end for
+    } // end for
+    return result;
+  }// end filter()
 
   public Item[] getAll() {
     return items;
