@@ -15,6 +15,7 @@ public class Item {
     this.createDate = new Date().getTime();
     this.name = name;
     this.description = description;
+    System.out.println("jjj");
   }
 
   public String getName() {
