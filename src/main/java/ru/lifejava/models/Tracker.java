@@ -1,5 +1,7 @@
 package ru.lifejava.models;
+
 import java.util.*;
+
 /**
  * Created by sergei on 28.05.16.
  */
@@ -7,7 +9,7 @@ public class Tracker {
   private Item[] items;
   private static int id = 0;
 
-  public Tracker (int size){
+  public Tracker(int size) {
     this.items = new Item[size];
   }
 
@@ -23,7 +25,7 @@ public class Tracker {
 
   public void delete(Item item) {//удаляем по айдишники
     for (int i = 0; i < this.items.length; i++) {
-      if(this.items[i].getId() == item.getId()) {
+      if (this.items[i].getId() == item.getId()) {
         this.items[i] = null;
       }
     }
@@ -35,9 +37,9 @@ public class Tracker {
 
   public Item findById(int id) {
     for (int i = 0; i < items.length; i++) {
-      if(items[i] != null) {
+      if (items[i] != null) {
         int idX = items[i].getId();
-        if(id == idX) {
+        if (id == idX) {
           return items[i];
         }
       }
@@ -51,26 +53,33 @@ public class Tracker {
     Item[] result = new Item[items.length];
 
     for (int i = 0; i < this.items.length && items != null; i++) { //проверяем по порядку каждое имя из массива items[]
-      String s = this.items[i].getName();
-      char[] arr = s.toCharArray();             //попорядку делем на символы имя каждого объекта
+      if (this.items[i] != null) {
+        String s = this.items[i].getName();
+        char[] arr = s.toCharArray();             //попорядку делем на символы имя каждого объекта
 
-      for (int j = 0; j < arr.length; j++) {
-        if(arr[j] == arrSearch[0]) {               // когда символ станет равен первому символу искомой строки
-          for (int a=j, b=0; b < arrSearch.length && a < arr.length; a++, b++) {
-            if(arr[a] == arrSearch[b]) {            //проверяем что бы символы были равны
-              if (b  == (arrSearch.length - 1)) {   //когда b станет равен последнему символу искомой строки
-                for (int d = 0; d < result.length; d++) {
-                  if (result[d] == null) {
-                    result[d] = items[i];
-                    break;
-                  }
-                } // end for
+        for (int j = 0; j < arr.length; j++) {
+          if (arr[j] == arrSearch[0]) {               // когда символ станет равен первому символу искомой строки
+
+            for (int a = j, b = 0; b < arrSearch.length && a < arr.length; a++, b++) { //проверяем каждый символ попарно
+              if (arr[a] == arrSearch[b]) {            //проверяем что бы символы были равны
+
+                if (b == (arrSearch.length - 1)) {   //когда b станет равен последнему символу искомой строки
+
+                  for (int d = 0; d < result.length; d++) {
+
+                    if (result[d] == null) {
+                      result[d] = items[i];
+                      break;
+                    }
+                  } // end for
+                } // end if
+
               } // end if
-            } // end if
-          }// end for
-        }// end if
-      }// end for
-    } // end for
+            }// end for
+          }// end if
+        }// end for
+      } // end for
+    }
     return result;
   }// end filter()
 
