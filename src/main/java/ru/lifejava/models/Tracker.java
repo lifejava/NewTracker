@@ -27,7 +27,11 @@ public class Tracker {
   }
 
   public void delete(Item item) {//удаляем по айдишники
-
+    for (int i = 0; i < items.length; i++) {
+      if(this.items[i].getId() == item.getId()) {
+        this.items[i] = null;
+      }
+    }
   }
 
   public void edit(int id) {
@@ -43,7 +47,7 @@ public class Tracker {
         }
       }
     }
-    //noo
+    System.out.println("Объект ненайден");
     return null;
   }
 

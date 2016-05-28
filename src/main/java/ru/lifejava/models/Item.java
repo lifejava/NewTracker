@@ -8,8 +8,13 @@ public class Item {
   public Comment[] comment;
   public long createDate;
 
-  public Item() {
+  public Random random = new Random();
+
+  public Item(String name, String description) {
+    this.id = random.nextInt(100) * 1;
     this.createDate = new Date().getTime();
+    this.name = name;
+    this.description = description;
   }
 
   public String getName() {
