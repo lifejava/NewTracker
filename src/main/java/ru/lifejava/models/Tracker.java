@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class Tracker {
   private Item[] items;
-  private static int id = 0;
 
   public Tracker(int size) {
     this.items = new Item[size];
@@ -23,7 +22,7 @@ public class Tracker {
     }
   }
 
-  public void delete(Item item) {//удаляем по айдишники
+  public void delete(Item item) {
     for (int i = 0; i < this.items.length; i++) {
       if (this.items[i].getId() == item.getId()) {
         this.items[i] = null;

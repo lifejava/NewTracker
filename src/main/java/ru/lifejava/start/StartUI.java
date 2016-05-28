@@ -26,12 +26,9 @@ public class StartUI {
       }
     }
     System.out.println("-----------------------");
-   /*
-    for (Item item : tracker.filter(23, 28)) {
-     if(item != null) {
-      System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
-     }
-    }*/
+
+
+    //Весь вывод
     for (Item item : tracker.getAll()) {
       if(item != null) {
         System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
