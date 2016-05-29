@@ -1,5 +1,6 @@
 package ru.lifejava.models;
 
+import java.nio.channels.Pipe;
 import java.util.Scanner;
 
 /**
@@ -39,7 +40,7 @@ public class Menu {
     if(num == 1) {
       numberOne();
     } else if(num == 2) {
-
+      numberTwo();
     }else if(num == 3) {
       numberThree();
     }else if(num == 4) {
@@ -53,7 +54,7 @@ public class Menu {
     }
   }
 
-  public void listApp(Item[] item) {
+  public void listAppAll(Item[] item) {
     for (int i = 0; i < item.length; i++) {
       if (item[i] != null) {
         System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
@@ -74,13 +75,26 @@ public class Menu {
   }
 
   public void numberTwo() {
+    System.out.println("Введите номер заявки которую хотите редактировать");
+    listAppAll(tracker.getAll());
+    int appNumber = entryNum() - 1;
+    if(tracker.getAll()[appNumber] != null) {
+      System.out.println("Введите имя: ");
+      String name = entryString();
+      tracker.getAll()[appNumber].setName(name);
+      System.out.println("Введите описание: ");
+      String description = entryString();
+      tracker.getAll()[appNumber].setDescription(description);
+    } else {
+      System.out.println("Недопустимый номер");
+    }
 
   }
 
   public void numberThree() {
     System.out.println("\nВведите число заявки которую хотите удалить: \n");
 
-    listApp(tracker.getAll());
+    listAppAll(tracker.getAll());
 
     int num = entryNum();
     if(num >= 1 && tracker.getAll()[num - 1] != null) {
@@ -91,20 +105,17 @@ public class Menu {
   }
 
   public void numberFour() {
-    listApp(tracker.getAll());
+    listAppAll(tracker.getAll());
   }
 
   public void numberFive() {
     System.out.println("Введите подстроку (поиск по имени)");
     String strSearch = entryString();
     Item[] item = tracker.filter(strSearch);
-    listApp(item);
+    listAppAll(item);
   }
 
   public void numberSix() {
-
-  }
-  public void numberSeven() {
 
   }
 
