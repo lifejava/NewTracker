@@ -115,7 +115,17 @@ public class Menu {
     listAppAll(item);
   }
 
+  public void setComment(Comment comment) {
+
+  }
+
   public void numberSix() {
+    System.out.println("Добавьте коментарий.\n Выберете кому из списка вы хотите добавить коментарий: ");
+    listAppAll(tracker.getAll());
+    int appNumber = entryNum();
+    System.out.println("Пешите коментарий");
+    String comment = entryString();
+    tracker.getAll()[appNumber - 1].setComment(new Comment(comment));
 
   }
 

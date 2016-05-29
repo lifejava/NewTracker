@@ -38,7 +38,12 @@ public class Item {
   public int getId() {
     return this.id;
   }
-  public void setId(int id) {
-    this.id = id;
+
+  public void setComment(Comment comment) {
+    for (Comment com : this.comment) {
+      if(com == null) {
+        com = comment;
+      }
+    }
   }
 }
