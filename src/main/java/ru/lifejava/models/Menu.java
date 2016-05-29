@@ -39,36 +39,62 @@ public class Menu {
     String str = scanner.nextLine();
     return str;
   }
+
+  public void numberOne() {
+    System.out.println("Введите имя");
+    String name = entryString();
+    System.out.println("Описание");
+    String description = entryString();
+    this.tracker.add(new Task(name, description));
+  }
+  public void numberTwo() {
+
+  }
+  public void numberThree() {
+    System.out.println("Введите число заявки которую хотите удалить: ");
+    for (int i = 0; i < tracker.getAll().length; i++) {
+      if (tracker.getAll()[i] != null) {
+        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
+                tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
+                tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
+      } else {
+        System.out.println(i + " ______________________");
+      }
+    }
+    int num = entryNum() - 1;
+    if(num >= 1 && tracker.getAll()[num] != null) {
+      tracker.delete(tracker.getAll()[num]);
+    } else {
+      System.out.println("\n*************** Ошибка! Неправильный номер зайвки ***************\n");
+    }
+  }
+  public void numberFour() {
+    for (Item item : tracker.getAll()) {
+      if(item != null) {
+        System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
+      } else {
+        System.out.println("_");
+      }
+    }
+  }
+  public void numberFive() {
+
+  }
+  public void numberSix() {
+
+  }
+  public void numberSeven() {
+
+  }
   public void introducedNumber (int num){
     if(num == 1) {
-      System.out.println("Введите имя");
-      String name = entryString();
-      System.out.println("Описание");
-      String description = entryString();
-      this.tracker.add(new Task(name, description));
+      numberOne();
     } else if(num == 2) {
 
     }else if(num == 3) {
-      System.out.println("Введите число заявки которую хотите удалить: ");
-      for (int i = 0; i < tracker.getAll().length; i++) {
-        if (tracker.getAll()[i] != null) {
-          System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n",
-                  tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
-                  tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
-        } else {
-          System.out.println("_");
-        }
-      }
-      tracker.delete(tracker.getAll()[entryNum() - 1]);
+      numberThree();
     }else if(num == 4) {
-      for (Item item : tracker.getAll()) {
-        if(item != null) {
-          System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
-        } else {
-          System.out.println("_");
-        }
-      }
-
+      numberFour();
     }else if(num == 5) {
 
     }else if(num == 6) {
