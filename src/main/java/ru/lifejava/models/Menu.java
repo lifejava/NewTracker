@@ -59,7 +59,7 @@ public class Menu {
           System.out.println("_");
         }
       }
-
+      tracker.delete(tracker.getAll()[entryNum() - 1]);
     }else if(num == 4) {
       for (Item item : tracker.getAll()) {
         if(item != null) {
