@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Menu {
   Tracker tracker;
   private Scanner scanner = new Scanner(System.in);
-  private String oneMenu = "Введите число для выбора элемента меню\n " +
+  private String oneMenu = "\nВведите число для выбора элемента меню:\n " +
                           "1. Добавление новой заявки\n " +
                           "2. Редактирования заявки.\n " +
                           "3. Удаления заявки.\n " +
@@ -58,6 +58,18 @@ public class Menu {
     }
   }
 
+  public void listApp() {
+    for (int i = 0; i < tracker.getAll().length; i++) {
+      if (tracker.getAll()[i] != null) {
+        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
+                tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
+                tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
+      } else if (tracker.getAll()[i] == null){
+        System.out.println(i+1 + " ______________________");
+      }
+    }
+  }
+
   public void numberOne() {
     System.out.println("Введите имя");
     String name = entryString();
@@ -69,17 +81,12 @@ public class Menu {
   public void numberTwo() {
 
   }
+
   public void numberThree() {
-    System.out.println("Введите число заявки которую хотите удалить: ");
-    for (int i = 0; i < tracker.getAll().length; i++) {
-      if (tracker.getAll()[i] != null) {
-        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
-                tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
-                tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
-      } else if (tracker.getAll()[i] == null){
-        System.out.println(i+1 + " ______________________");
-      }
-    }
+    System.out.println("\nВведите число заявки которую хотите удалить: \n");
+
+    listApp();
+
     int num = entryNum();
     if(num >= 1 && tracker.getAll()[num - 1] != null) {
       tracker.delete(tracker.getAll()[num - 1]);
@@ -89,13 +96,7 @@ public class Menu {
   }
 
   public void numberFour() {
-    for (Item item : tracker.getAll()) {
-      if(item != null) {
-        System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
-      } else {
-        System.out.println("_");
-      }
-    }
+    listApp();
   }
 
   public void numberFive() {
