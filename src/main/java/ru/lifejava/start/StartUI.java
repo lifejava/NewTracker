@@ -16,8 +16,11 @@ public class StartUI {
     while (true) {
       this.menu.displayMenu();
       int entryNum = this.menu.entryNum();
-      this.menu.introducedNumber(entryNum);
-      break;
+      if(entryNum != 7) {
+        this.menu.introducedNumber(entryNum);
+      } else {
+        break;
+      }
     }
 
 //    String name = input.ask("Please, enter the taks's name: ");

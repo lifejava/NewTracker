@@ -51,6 +51,13 @@ public class Menu {
     }else if(num == 3) {
 
     }else if(num == 4) {
+      for (Item item : tracker.getAll()) {
+        if(item != null) {
+          System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", item.getName(), item.getDescription(), item.getCreate(), item.getId());
+        } else {
+          System.out.println("_");
+        }
+      }
 
     }else if(num == 5) {
 
