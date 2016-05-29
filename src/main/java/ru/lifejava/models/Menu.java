@@ -49,6 +49,16 @@ public class Menu {
     } else if(num == 2) {
 
     }else if(num == 3) {
+      System.out.println("Введите число заявки которую хотите удалить: ");
+      for (int i = 0; i < tracker.getAll().length; i++) {
+        if (tracker.getAll()[i] != null) {
+          System.out.printf("Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n",
+                  tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
+                  tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
+        } else {
+          System.out.println("_");
+        }
+      }
 
     }else if(num == 4) {
       for (Item item : tracker.getAll()) {
