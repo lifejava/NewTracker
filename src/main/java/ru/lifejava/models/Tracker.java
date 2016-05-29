@@ -11,7 +11,6 @@ public class Tracker {
   }
 
   public void add(Item item) {
-    //this.items[items.length+1] = item;
     for (int i = 0; i < this.items.length; i++) {
       if (this.items[i] == null) {
         this.items[i] = item;

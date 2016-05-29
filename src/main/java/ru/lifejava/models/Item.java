@@ -40,10 +40,15 @@ public class Item {
   }
 
   public void setComment(Comment comment) {
-    for (Comment com : this.comment) {
-      if(com == null) {
-        com = comment;
+    for (int i = 0; i < this.comment.length; i++) {
+      if(this.comment[i] == null) {
+        this.comment[i] = comment;
+        break;
       }
     }
+  }
+
+  public Comment[] getComment () {
+    return comment;
   }
 }

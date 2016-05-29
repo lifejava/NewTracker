@@ -48,7 +48,7 @@ public class Menu {
     }else if(num == 5) {
       numberFive();
     }else if(num == 6) {
-
+      numberSix();
     }else if(num == 7) {
 
     }
@@ -57,9 +57,14 @@ public class Menu {
   public void listAppAll(Item[] item) {
     for (int i = 0; i < item.length; i++) {
       if (item[i] != null) {
-        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
-                item[i].getName(), item[i].getDescription(),
+        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n",
+                i+1, item[i].getName(), item[i].getDescription(),
                 item[i].getCreate(), item[i].getId());
+        for (int  j = 0; j < tracker.getAll()[i].getComment().length; j++) { //для вывода коментария
+          if(tracker.getAll()[i].getComment()[j] != null) {
+            System.out.println("Коментарий: " + tracker.getAll()[i].getComment()[j].comment + "\n");
+          }
+        }
       } else if (item[i] == null){
         System.out.println(i+1 + " ______________________");
       }
@@ -115,10 +120,6 @@ public class Menu {
     listAppAll(item);
   }
 
-  public void setComment(Comment comment) {
-
-  }
-
   public void numberSix() {
     System.out.println("Добавьте коментарий.\n Выберете кому из списка вы хотите добавить коментарий: ");
     listAppAll(tracker.getAll());
@@ -126,10 +127,6 @@ public class Menu {
     System.out.println("Пешите коментарий");
     String comment = entryString();
     tracker.getAll()[appNumber - 1].setComment(new Comment(comment));
-
   }
 
-  public void setTracker(Tracker tracker) {
-    this.tracker = tracker;
-  }
 }
