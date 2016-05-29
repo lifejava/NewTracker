@@ -6,9 +6,40 @@ package ru.lifejava.start;
 import ru.lifejava.models.*;
 
 public class StartUI {
-  public static void main(String[] args) {
+  Menu menu;
 
+  public StartUI() {
+    this.menu = new Menu(new Tracker(20));
+  }
+
+  public void displayMenu() {
+    while (true) {
+      this.menu.displayMenu();
+      int entryNum = this.menu.entryNum();
+      this.menu.introducedNumber(entryNum);
+      break;
+    }
+
+//    String name = input.ask("Please, enter the taks's name: ");
+//    Tracker tracker = new Tracker(20);
+//    tracker.add(new Item(name, "first desk"));
+//    for (Item item : tracker.getAll()){
+//      if (item != null){
+//        System.out.println(item.getName());
+//      }
+//    }
+  }
+  public static void main(String[] args) {
+    Menu menu = new Menu(new Tracker(20));
     Tracker tracker = new Tracker(20);
+    StartUI startUI = new StartUI();
+    menu.setTracker(tracker);
+    startUI.displayMenu();
+
+    //String name = menu.ask("Введите цифру для выбора меню");
+    //System.out.println(name);
+
+
     tracker.add(new Bug("темный экран", "пропажа изображения"));
     tracker.add(new Bug("тень", "на улице"));
     tracker.add(new Bug("темный экран", "пропажа изображения"));
