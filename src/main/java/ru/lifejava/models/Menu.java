@@ -25,11 +25,6 @@ public class Menu {
     System.out.println(oneMenu);
   }
 
-  public String ask(String question) {
-    System.out.println(question);
-    return scanner.nextLine();
-  }
-
   public int entryNum() {
     int num = Integer.parseInt(scanner.nextLine());
     return num;
@@ -50,7 +45,7 @@ public class Menu {
     }else if(num == 4) {
       numberFour();
     }else if(num == 5) {
-
+      numberFive();
     }else if(num == 6) {
 
     }else if(num == 7) {
@@ -58,13 +53,13 @@ public class Menu {
     }
   }
 
-  public void listApp() {
-    for (int i = 0; i < tracker.getAll().length; i++) {
-      if (tracker.getAll()[i] != null) {
+  public void listApp(Item[] item) {
+    for (int i = 0; i < item.length; i++) {
+      if (item[i] != null) {
         System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n", i+1,
-                tracker.getAll()[i].getName(), tracker.getAll()[i].getDescription(),
-                tracker.getAll()[i].getCreate(), tracker.getAll()[i].getId());
-      } else if (tracker.getAll()[i] == null){
+                item[i].getName(), item[i].getDescription(),
+                item[i].getCreate(), item[i].getId());
+      } else if (item[i] == null){
         System.out.println(i+1 + " ______________________");
       }
     }
@@ -85,7 +80,7 @@ public class Menu {
   public void numberThree() {
     System.out.println("\nВведите число заявки которую хотите удалить: \n");
 
-    listApp();
+    listApp(tracker.getAll());
 
     int num = entryNum();
     if(num >= 1 && tracker.getAll()[num - 1] != null) {
@@ -96,11 +91,14 @@ public class Menu {
   }
 
   public void numberFour() {
-    listApp();
+    listApp(tracker.getAll());
   }
 
   public void numberFive() {
-
+    System.out.println("Введите подстроку (поиск по имени)");
+    String strSearch = entryString();
+    Item[] item = tracker.filter(strSearch);
+    listApp(item);
   }
 
   public void numberSix() {

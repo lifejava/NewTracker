@@ -9,7 +9,7 @@ public class StartUI {
   Menu menu;
 
   public StartUI() {
-    this.menu = new Menu(new Tracker(20));
+    this.menu = new Menu(new Tracker(10));
   }
 
   public void displayMenu() {
