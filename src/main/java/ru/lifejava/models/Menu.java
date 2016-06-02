@@ -1,6 +1,5 @@
 package ru.lifejava.models;
 
-import java.nio.channels.Pipe;
 import java.util.Scanner;
 
 /**
@@ -83,17 +82,17 @@ public class Menu {
     System.out.println("Введите номер заявки которую хотите редактировать");
     listAppAll(tracker.getAll());
     int appNumber = entryNum() - 1;
-    if(tracker.getAll()[appNumber] != null) {
-      System.out.println("Введите имя: ");
-      String name = entryString();
-      tracker.getAll()[appNumber].setName(name);
-      System.out.println("Введите описание: ");
-      String description = entryString();
-      tracker.getAll()[appNumber].setDescription(description);
-    } else {
-      System.out.println("Недопустимый номер");
-    }
 
+      if (tracker.getAll()[appNumber] != null) {
+        System.out.println("Введите имя: ");
+        String name = entryString();
+        tracker.getAll()[appNumber].setName(name);
+        System.out.println("Введите описание: ");
+        String description = entryString();
+        tracker.getAll()[appNumber].setDescription(description);
+      }else {
+        System.out.println("Недопустимый номер");
+      }
   }
 
   public void numberThree() {
