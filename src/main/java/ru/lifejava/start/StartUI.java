@@ -18,8 +18,10 @@ public class StartUI {
     while (true) {
       this.menu.displayMenu();
       int entryNum = this.menu.entryNum();
-      if(entryNum != 7) {
+      if(entryNum < 7 && entryNum != 0) {
         this.menu.introducedNumber(entryNum);
+      }else if(entryNum == 0 || entryNum > 7) {
+        System.out.println("**********Такого пункта меню нет**********");
       } else {
         break;
       }
