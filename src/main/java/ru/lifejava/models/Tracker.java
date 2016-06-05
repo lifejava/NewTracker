@@ -19,9 +19,18 @@ public class Tracker {
     }
   }
 
-  public void delete(Item item) {
-    for (int i = 0; i < this.items.length; i++) {
-      if (this.items[i].getId() == item.getId()) {
+  public Item findById(int numId) {
+    for (Item item : getAll()) {
+      if(item != null && item.getId() == numId) {
+        return item;
+      }
+    }
+    return null;
+  }
+
+  public void delete(int numId) {
+    for (int i = 0; i < items.length; i++) {
+      if(items[i] != null && items[i].getId() == numId) {
         this.items[i] = null;
         break;
       }

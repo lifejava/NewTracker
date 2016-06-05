@@ -35,37 +35,38 @@ public class Menu {
     return str;
   }
 
-  public void introducedNumber (int num){
-    if(num == 1) {
-      numberOne();
-    } else if(num == 2) {
-      numberTwo();
-    }else if(num == 3) {
-      numberThree();
-    }else if(num == 4) {
-      numberFour();
-    }else if(num == 5) {
-      numberFive();
-    }else if(num == 6) {
-      numberSix();
-    }else if(num == 7) {
 
+  public void introducedNumber (int num){
+    // switch ()
+    switch (num) {
+      case 1:
+        numberOne();
+        break;
+      case 2:
+        numberTwo();
+        break;
+      case 3:
+        numberThree();
+        break;
+      case 4:
+        numberFour();
+        break;
+      case 5:
+        numberFive();
+        break;
+      case 6:
+        numberSix();
+        break;
+      default:
+        break;
     }
   }
 
   public void listAppAll(Item[] item) {
-    for (int i = 0; i < item.length; i++) {
-      if (item[i] != null) {
-        System.out.printf("%d. Имя: %s. Описание: %s.  Дата создания: %d. Id: %s \n",
-                i+1, item[i].getName(), item[i].getDescription(),
-                item[i].getCreate(), item[i].getId());
-        for (int  j = 0; j < tracker.getAll()[i].getComment().length; j++) { //для вывода коментария
-          if(tracker.getAll()[i].getComment()[j] != null) {
-            System.out.println("Коментарий: " + tracker.getAll()[i].getComment()[j].comment + "\n");
-          }
-        }
-      } else if (item[i] == null){
-        System.out.println(i+1 + " ______________________");
+    for (Item items : item) {
+      if(items != null) {
+        System.out.printf("Id: %d. Имя: %s. Описание: %s.  Дата создания: %d. \n",
+                items.getId(), items.getName(), items.getDescription(), items.getCreate());
       }
     }
   }
@@ -75,35 +76,31 @@ public class Menu {
     String name = entryString();
     System.out.println("Описание");
     String description = entryString();
-    this.tracker.add(new Task(name, description));
+    tracker.add(new Task(name, description));
   }
 
-  public void numberTwo() {
-    System.out.println("Введите номер заявки которую хотите редактировать");
+  public void numberTwo() {         //по айдишнику
+    System.out.println("Введите id который хотите редактировать");
     listAppAll(tracker.getAll());
-    int appNumber = entryNum() - 1;
+    Item itemId = tracker.findById(entryNum());
 
-      if (tracker.getAll()[appNumber] != null) {
-        System.out.println("Введите имя: ");
-        String name = entryString();
-        tracker.getAll()[appNumber].setName(name);
-        System.out.println("Введите описание: ");
-        String description = entryString();
-        tracker.getAll()[appNumber].setDescription(description);
-      }else {
-        System.out.println("Недопустимый номер");
-      }
+    if(itemId != null) {
+      System.out.println("Введите имя: ");
+      itemId.setName(entryString());
+      System.out.println("Введите описание: ");
+      itemId.setDescription(entryString());
+    } else {
+      System.out.println("Такого id несуществует");
+    }
   }
 
   public void numberThree() {
-    System.out.println("\nВведите число заявки которую хотите удалить: \n");
-
+    System.out.println("\nВведите id заявки которую хотите удалить: \n");
     listAppAll(tracker.getAll());
-
-    int num = entryNum();
-    if(num >= 1 && tracker.getAll()[num - 1] != null) {
-      tracker.delete(tracker.getAll()[num - 1]);
-    } else {
+    int id = entryNum();
+    if (tracker.findById(id) != null) {
+      tracker.delete(id);
+    }else {
       System.out.println("\n*************** Ошибка! Неправильный номер зайвки ***************\n");
     }
   }
@@ -120,12 +117,14 @@ public class Menu {
   }
 
   public void numberSix() {
-    System.out.println("Добавьте коментарий.\n Выберете кому из списка вы хотите добавить коментарий: ");
+    System.out.println("Добавьте коментарий.\n Введите id: \n ");
     listAppAll(tracker.getAll());
-    int appNumber = entryNum();
-    System.out.println("Пешите коментарий");
-    String comment = entryString();
-    tracker.getAll()[appNumber - 1].setComment(new Comment(comment));
+    Item itemId = tracker.findById(entryNum());
+    if(itemId != null) {
+      System.out.println("Пешите коментарий");
+      itemId.setComment(new Comment(entryString()));
+    } else {
+      System.out.println("Неверный id");
+    }
   }
-
 }
