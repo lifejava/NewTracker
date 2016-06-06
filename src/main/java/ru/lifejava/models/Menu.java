@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Created by sergei on 29.05.16.
  */
 public class Menu {
-  Tracker tracker;
+  public Tracker tracker;
   private Scanner scanner = new Scanner(System.in);
   private String oneMenu = "\nВведите число для выбора элемента меню:\n " +
                           "1. Добавление новой заявки\n " +
