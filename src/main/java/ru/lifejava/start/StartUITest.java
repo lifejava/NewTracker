@@ -52,22 +52,8 @@ public class StartUITest {
     menu.tracker.getAll()[1].setComment(new Comment("Супер"));
     menu.tracker.getAll()[1].setComment(new Comment("Лучшие"));
     menu.listAppAll(menu.tracker.getAll());
-//    while (true) {
-//      menu.displayMenu();
-//      int entryNum;
-//      try {
-//        entryNum = menu.entryNum();
-//        if(entryNum < 7 && entryNum != 0) {
-//          menu.introducedNumber(entryNum);
-//        }else if(entryNum == 0 || entryNum > 7) {
-//          System.out.println("**********Такого пункта меню нет**********");
-//        } else {
-//          break;
-//        }
-//      } catch (NumberFormatException n) {
-//        System.out.println("**********Такого пункта меню нет**********");
-//      }
-//    }
 
+    //Выходим из приложения
+    menu.introducedNumber(7);
   }
 }
