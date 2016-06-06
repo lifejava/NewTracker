@@ -50,7 +50,6 @@ public class StartUITest {
     //Добовляем коментарии
     System.out.println("Добовляем коментарии");
     menu.tracker.getAll()[1].setComment(new Comment("Супер"));
-
     menu.tracker.getAll()[1].setComment(new Comment("Лучшие"));
     menu.listAppAll(menu.tracker.getAll());
 //    while (true) {
