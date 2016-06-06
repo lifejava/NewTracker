@@ -1,5 +1,6 @@
 package ru.lifejava.models;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -37,7 +38,6 @@ public class Menu {
 
 
   public void introducedNumber (int num){
-    // switch ()
     switch (num) {
       case 1:
         numberOne();
@@ -67,6 +67,10 @@ public class Menu {
       if(items != null) {
         System.out.printf("Id: %d. Имя: %s. Описание: %s.  Дата создания: %d. \n",
                 items.getId(), items.getName(), items.getDescription(), items.getCreate());
+
+          for (Comment comment : items.getComment()) {
+            if(comment != null) System.out.println(comment);
+          }
       }
     }
   }

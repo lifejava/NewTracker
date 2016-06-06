@@ -14,32 +14,31 @@ public class StartUI {
     this.tracker = tracker;
   }
 
-  public void displayMenu() {
-
+  public void displayMenu(){
     while (true) {
       menu.displayMenu();
-      int entryNum = menu.entryNum();
-      if(entryNum < 7 && entryNum != 0) {
-        menu.introducedNumber(entryNum);
-      }else if(entryNum == 0 || entryNum > 7) {
+      int entryNum;
+
+      try {
+        entryNum = menu.entryNum();
+        if(entryNum < 7 && entryNum != 0) {
+          menu.introducedNumber(entryNum);
+        }else if(entryNum == 0 || entryNum > 7) {
+          System.out.println("**********Такого пункта меню нет**********");
+        } else {
+          break;
+        }
+      } catch (NumberFormatException n) {
         System.out.println("**********Такого пункта меню нет**********");
-      } else {
-        break;
       }
     }
-//    String name = input.ask("Please, enter the taks's name: ");
-//    Tracker tracker = new Tracker(20);
-//    tracker.add(new Item(name, "first desk"));
-//    for (Item item : tracker.getAll()){
-//      if (item != null){
-//        System.out.println(item.getName());
-//      }
-//
   }
+
   public static void main(String[] args) {
     StartUI startUI = new StartUI(new Tracker(10));
     startUI.tracker.add(new Task("Колонки автомобильные", "Красный цвет"));
     startUI.tracker.add(new Task("Колонки домашние", "Синий цвет"));
+    startUI.tracker.add(new Task("Телевизор", "Синий цвет"));
     startUI.displayMenu();
   }
 }

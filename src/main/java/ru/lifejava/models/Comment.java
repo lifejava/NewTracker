@@ -6,4 +6,9 @@ public class Comment {
   public Comment(String comment) {
     this.comment = comment;
   }
+
+  @Override
+  public String toString() {
+    return " -Коментарий : " + comment;
+  }
 }
