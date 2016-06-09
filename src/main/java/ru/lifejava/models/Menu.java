@@ -1,6 +1,6 @@
 package ru.lifejava.models;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
@@ -65,8 +65,10 @@ public class Menu {
   public void listAppAll(Item[] item) {
     for (Item items : item) {
       if(items != null) {
-        System.out.printf("Id: %d. Имя: %s. Описание: %s.  Дата создания: %d. \n",
-                items.getId(), items.getName(), items.getDescription(), items.getCreate());
+        //long editDate = items.getCreate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy");
+        System.out.printf("Id: %d. Имя: %s. Описание: %s.  Дата создания: %s. \n",
+                items.getId(), items.getName(), items.getDescription(), dateFormat.format(items.getCreate()));
 
           for (Comment comment : items.getComment()) {
             if(comment != null) System.out.println(comment);
